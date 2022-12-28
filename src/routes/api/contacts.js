@@ -6,13 +6,16 @@ const {
   deleteContactController,
   updateContactController,
   patchContactStatusController,
-} = require("../controls/controls");
+} = require("../../controllers/contactsController");
+const authMiddleware = require("../../middlewares/authMiddleware");
 const {
   updateValidationMidleware,
   createValidationMidleware,
-} = require("../validation/validation");
+} = require("../../middlewares/fieldsValidationMiddleware");
 
 const router = express.Router();
+
+router.use(authMiddleware);
 
 router.get("/", getContactsController);
 router.post("/", createValidationMidleware, addContactController);
