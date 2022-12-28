@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/usersModels");
 const createError = require("../services/createError");
 
-const { TOKEN_SALT } = process.env;
+const { SECRET_KEY } = process.env;
 
 const signupController = async (req, res, next) => {
   const { password, email } = req.body;
@@ -43,7 +43,7 @@ const loginController = async (req, res, next) => {
       throw createError(401, "Not your day");
     }
     const { subscription, _id: userId } = newUser;
-    const token = jwt.sign({ userId }, TOKEN_SALT, { expiresIn: "1h" });
+    const token = jwt.sign({ userId }, SECRET_KEY, { expiresIn: "1h" });
     await User.findByIdAndUpdate({ _id: userId }, { token });
 
     return res.status(200).json({ token, user: { email, subscription } });

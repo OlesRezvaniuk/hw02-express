@@ -13,7 +13,7 @@ const {
 
 const router = express.Router();
 
-router.post("/signup", userValidationMiddleware, signupController);
+router.post("/register", userValidationMiddleware, signupController);
 router.post("/login", userValidationMiddleware, loginController);
 router.get("/logout", authMiddleware, logoutController);
 router.get("/current", authMiddleware, getCurrentUserController);
