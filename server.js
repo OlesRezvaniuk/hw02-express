@@ -4,7 +4,7 @@ require("dotenv").config();
 
 const port = process.env.PORT ?? 3000;
 
-const conectionString = process.env.MONGOURI;
+const conectionString = process.env.MONGO_URI;
 
 const contactsDB = async () => {
   try {
